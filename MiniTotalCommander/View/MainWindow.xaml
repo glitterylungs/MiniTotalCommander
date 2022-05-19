@@ -3,73 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MiniTotalCommander"
-       
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:view="clr-namespace:MiniTotalCommander.View"
+        xmlns:vm="clr-namespace:MiniTotalCommander.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" Background="#fabea7">
-    <Window.Resources>
-        <Style TargetType="ListBox">
-            <Setter Property="Margin" Value="20"/>
-            <Setter Property="Background" Value="#fbe2e5"/>
-            <Setter Property="Foreground" Value="#767c77"/>
-            <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-        <Style TargetType="TextBlock">
-            <Setter Property="Background" Value="#fbe2e5"/>
-            <Setter Property="Width" Value="250"/>
-            <Setter Property="Foreground" Value="#767c77"/>
-            <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-        <Style TargetType="ComboBox">
-            <Setter Property="Background" Value="#fbe2e5"/>
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="Foreground" Value="#767c77"/>
-            <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-        <Style TargetType="Label">
-            <Setter Property="Foreground" Value="#767c77"/>
-            <Setter Property="FontFamily" Value="Times New Roman"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Margin" Value="0,0,15,0"/>
-        </Style>
-    </Window.Resources>
+        Title="MiniTotalCommander" Height="600" Width="800" Background="#fabea7">
+
+    <Window.DataContext>
+        <vm:ViewModelBrain x:Name="viewModelBrain"/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        
-        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20">
-            <Label  Content="path:"/>
-            <TextBlock/>
-        </StackPanel>
-        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20">
-            <Label  Content="drive:"/>
-            <ComboBox/>
-        </StackPanel>
-        <ListBox Grid.Column="0" Grid.Row="2" />
 
+        <view:PanelTC Grid.Column="0" Grid.Row="0">
+        </view:PanelTC>
 
-        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20">
-            <Label  Content="path:"/>
-            <TextBlock/>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20">
-            <Label  Content="drive:"/>
-            <ComboBox/>
-        </StackPanel>
-        <ListBox Grid.Column="1" Grid.Row="2"/>
+        <view:PanelTC Grid.Column="1" Grid.Row="0">
+        </view:PanelTC>
+
 
         <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="300,7,300,20" Background="#9cada4" Content="COPY >>" Foreground="#fbe2e5" FontSize="22" FontWeight="Bold" FontFamily="Times New Roman"/>
     </Grid>
