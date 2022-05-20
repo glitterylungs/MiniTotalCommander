@@ -49,13 +49,21 @@
 
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20">
             <Label  Content="path:"/>
-            <TextBlock/>
+            <TextBlock x:Name="textblock"
+                       Text="{Binding PathText, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"/>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20">
             <Label  Content="drive:"/>
-            <ComboBox/>
+            <ComboBox x:Name="combobox" 
+                      ItemsSource="{Binding DriveList, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" 
+                      SelectedItem="{Binding SelectedDrive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                      DropDownOpened="comboboxDropDownOpened"/>
         </StackPanel>
-        <ListBox Grid.Column="0" Grid.Row="2" />
+        <ListBox Grid.Column="0" Grid.Row="2"
+                 x:Name="listbox"
+                 ItemsSource="{Binding FilesList, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                 SelectedItem="{Binding SelectedFile, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                 MouseDoubleClick="listboxMouseDoubleClick"/>
 
     </Grid>
 </UserControl>

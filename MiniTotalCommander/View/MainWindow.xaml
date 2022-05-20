@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:view="clr-namespace:MiniTotalCommander.View"
         xmlns:vm="clr-namespace:MiniTotalCommander.ViewModel"
         mc:Ignorable="d"
@@ -23,13 +23,51 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <view:PanelTC Grid.Column="0" Grid.Row="0">
+        <view:PanelTC Grid.Column="0" Grid.Row="0"
+                      x:Name="LeftPanel"
+                      DriveList="{Binding LeftPanel.driveList}"
+                      SelectedDrive="{Binding LeftPanel.CurrentDrive, Mode=TwoWay}"
+                      PathText="{Binding LeftPanel.CurrentPath}"
+                      FilesList="{Binding LeftPanel.filesList}"
+                      SelectedFile="{Binding LeftPanel.CurrentFile, Mode=TwoWay}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ComboboxClick">
+                    <i:InvokeCommandAction Command="{Binding LeftPanel.DriveListClick}"/>
+                </i:EventTrigger>
+
+                <i:EventTrigger EventName="ListboxDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding LeftPanel.ChangeFolder}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </view:PanelTC>
 
-        <view:PanelTC Grid.Column="1" Grid.Row="0">
+        <view:PanelTC Grid.Column="1" Grid.Row="0"
+                      x:Name="RightPanel"
+                      DriveList="{Binding RightPanel.driveList}"
+                      SelectedDrive="{Binding RightPanel.CurrentDrive, Mode=TwoWay}"
+                      PathText="{Binding RightPanel.CurrentPath}"
+                      FilesList="{Binding RightPanel.filesList}"
+                      SelectedFile="{Binding RightPanel.CurrentFile, Mode=TwoWay}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ComboboxClick">
+                    <i:InvokeCommandAction Command="{Binding RightPanel.DriveListClick}"/>
+                </i:EventTrigger>
+
+                <i:EventTrigger EventName="ListboxDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding RightPanel.ChangeFolder}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </view:PanelTC>
 
 
-        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="300,7,300,20" Background="#9cada4" Content="COPY >>" Foreground="#fbe2e5" FontSize="22" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
+                Margin="300,7,300,20" 
+                Background="#9cada4" 
+                Content="COPY >>" 
+                Foreground="#fbe2e5" 
+                FontSize="22" 
+                FontWeight="Bold" 
+                FontFamily="Times New Roman"
+                Command="{Binding Copy}"/>
     </Grid>
 </Window>
