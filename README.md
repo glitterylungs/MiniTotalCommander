@@ -1,4 +1,4 @@
-#MiniTotalCommander
+MiniTotalCommander
 
 A poorer version of total commander available on Windows.
 
